@@ -1,7 +1,7 @@
 from fastapi import APIRouter,Query
-from models.waterpoint import Waterpoint
-from config.db import conn
-from schemas.waterpoint import serializeDict,serializeList
+from ..models.waterpoint import Waterpoint
+from ..config.db import conn
+from ..schemas.waterpoint import serializeDict,serializeList
 from bson import ObjectId
 from datetime import datetime
 

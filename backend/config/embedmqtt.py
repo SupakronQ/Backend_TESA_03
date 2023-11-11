@@ -1,8 +1,8 @@
 import paho.mqtt.client as mqtt
 import os
 import json
-from config.db import conn
-from models.waterpoint import Waterpoint
+from ..config.db import conn
+from ..models.waterpoint import Waterpoint
 from pydantic import ValidationError
 
 # Load environment variables from .env file

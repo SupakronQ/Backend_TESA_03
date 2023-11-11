@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from routes.waterpoint import waterpoint
-from config.embedmqtt import client
+from .routes.waterpoint import waterpoint
+from .config.embedmqtt import client
 
 app = FastAPI()
 app.include_router(waterpoint)
