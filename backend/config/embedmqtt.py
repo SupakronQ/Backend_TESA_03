@@ -45,4 +45,3 @@ client.tls_set()
 
 # Connect to the broker
 client.connect(host, port, 60)
-
