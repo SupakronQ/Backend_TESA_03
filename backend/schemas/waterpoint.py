@@ -16,3 +16,5 @@ def serializeDict(a) -> dict:
 
 def serializeList(entity) -> list:
     return [serializeDict(a) for a in entity]
+
+

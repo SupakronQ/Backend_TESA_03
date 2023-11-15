@@ -41,3 +41,5 @@ async def update_record(id,data: Waterpoint):
 @waterpoint.delete('/{id}')
 async def delete_record(id):
     return serializeDict(conn.local.waterpoint.find_one_and_delete({"_id":ObjectId(id)}))
+
+
