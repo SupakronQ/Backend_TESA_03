@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import os
 import json
 from ..config.db import conn
-from ..models.waterpoint import Waterpoint
+from ..models.hydrometrics import Dams,Stations
 from pydantic import ValidationError
 
 class MQTTClient:
@@ -42,12 +42,22 @@ class MQTTClient:
         try :
             data = json.loads(msg.payload.decode())
             print(f"Received message: {msg.payload.decode()} on topic {msg.topic}")
-            self.db.local.waterpoint.insert_one(dict(Waterpoint(**data)))
-            print("---save success---")
+                        
+            if data['type_source'] == "dam":
+                print("---dam---")
+                self.db.local.hydrometrics.insert_one(dict(Dams(**data)))
+                print("---save success---")
+            elif data['type_source'] == "station":
+                print("---station---")
+                self.db.local.hydrometrics.insert_one(dict(Stations(**data)))
+                print("---save success---")
+            else:
+                print("---WRONG source---")
+            
         except (ValidationError, json.JSONDecodeError) as err:
 
             print(f"!!!invalid message: {msg.payload.decode()} on topic {msg.topic}")
-
+ 
     def start(self):
         self.client.loop_start()
 
